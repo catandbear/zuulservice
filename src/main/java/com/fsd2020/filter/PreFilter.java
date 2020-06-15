@@ -41,6 +41,7 @@ public class PreFilter extends ZuulFilter {
     public Object run(){
         //获取上下文
         RequestContext ctx = RequestContext.getCurrentContext();
+        
         //获取Request
         HttpServletRequest request = ctx.getRequest();
         //获取请求参数accessToken
