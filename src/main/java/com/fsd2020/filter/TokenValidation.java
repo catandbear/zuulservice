@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 public class TokenValidation {
 
 	public void validateToken(String token) {
+		
 		System.out.println("验证token : " + token);
 	}
 }

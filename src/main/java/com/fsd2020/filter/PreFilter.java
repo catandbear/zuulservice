@@ -45,7 +45,7 @@ public class PreFilter extends ZuulFilter {
         //获取Request
         HttpServletRequest request = ctx.getRequest();
         //获取请求参数accessToken
-        String accessToken = request.getHeader("accessToken");
+        String accessToken = request.getParameter("token");
 
         logger.info(request.getRequestURI());
         if ("authservice".equals(request.getRequestURI().replace("/",""))){
