@@ -19,8 +19,8 @@ public class TokenValidation {
 		this.securityConn = securityConn;
 	}
 	
-	public void validateToken(String token) {
+	public boolean validateToken(String token) {
 		logger.warn("start send token");
-		securityConn.query(token);
+		return securityConn.query(token);
 	}
 }

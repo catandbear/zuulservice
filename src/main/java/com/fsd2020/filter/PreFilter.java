@@ -68,10 +68,26 @@ public class PreFilter extends ZuulFilter {
             return null;
         }
         
-        tokenValidation.validateToken(accessToken);
+        boolean tokenstatus = tokenValidation.validateToken(accessToken);
 
-        // token exist
-        logger.info("access is ok");
+        if (tokenstatus) {
+        	// token exist
+            logger.info("access is ok");
+            return null;
+		}
+        
+        logger.error("no token");
+        logger.warn("accessToken is empty");
+        ctx.setSendZuulResponse(false);  //进行拦截
+        ctx.setResponseStatusCode(401);
+
+        try {
+            ctx.getResponse().getWriter().write("{\"status\": \"401\"}");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return null;
+        
+        
     }
 }
