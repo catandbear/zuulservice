@@ -1,12 +1,26 @@
 package com.fsd2020.filter;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+import com.fsd2020.feignservice.SecurityConnection;
+
+@Service
 public class TokenValidation {
 
+	private SecurityConnection securityConn;
+	Logger logger = LoggerFactory.getLogger(TokenValidation.class);
+	
+	@Autowired
+	private TokenValidation(SecurityConnection securityConn) {
+		this.securityConn = securityConn;
+	}
+	
 	public void validateToken(String token) {
-		
-		System.out.println("验证token : " + token);
+		logger.warn("start send token");
+		securityConn.query(token);
 	}
 }
